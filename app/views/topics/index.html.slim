@@ -1,20 +1,24 @@
 .row
   ul.media-list
-    -@topics.each do |topic|
+    - @topics.each do |topic|
       li.media
-        - if user_signed_in?
-          - if @votes[topic]
-            = link_to "<i class='fa fa-arrow-up #{'active' if (@votes[topic].score == 1) }'></i>".html_safe, upvote_topic_vote_path(topic), method: :patch, class: "pull-left"
-            = link_to "<i class='fa fa-arrow-down #{'active' if (@votes[topic].score == 0) }'></i>".html_safe, downvote_topic_vote_path(topic), method: :patch, class: "pull-left"
-          - else
-            = link_to "<i class='fa fa-arrow-up'></i>".html_safe, upvote_topic_vote_path(topic), method: :patch, class: "pull-left"
-            = link_to "<i class='fa fa-arrow-down'></i>".html_safe, downvote_topic_vote_path(topic), method: :patch, class: "pull-left"
-        span.badge = topic.votes.where(score: 1).count
-
         .media-body
-          h4.media-heading
-            = link_to topic.title, topic
-            small = " by #{topic.user.display_name }"
-          = topic.short_description
+          span.vote_buttons
+            - if user_signed_in?
+              - if @votes[topic]
+                .vote_link
+                  = link_to "<i class='fa fa-arrow-up #{'active' if (@votes[topic].score == 1) }'></i>".html_safe, upvote_topic_vote_path(topic), method: :patch, class: "pull-left"
+                .vote_link
+                  = link_to "<i class='fa fa-arrow-down #{'active' if (@votes[topic].score == 0) }'></i>".html_safe, downvote_topic_vote_path(topic), method: :patch, class: "pull-left"
+              - else
+                .vote_link
+                  = link_to "<i class='fa fa-arrow-up'></i>".html_safe, upvote_topic_vote_path(topic), method: :patch, class: "pull-left"
+                .vote_link
+                  = link_to "<i class='fa fa-arrow-down'></i>".html_safe, downvote_topic_vote_path(topic), method: :patch, class: "pull-left"            
+          span.topic_media
+            h4.media-heading
+              = link_to topic.title, topic
+              small = " by #{topic.user.display_name }"
+            = topic.short_description
 .row
   = paginate @topics

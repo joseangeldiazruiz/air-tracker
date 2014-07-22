@@ -50,3 +50,14 @@ textarea {
 .down-vote {
 	color: red;
 }
+
+span.vote_buttons {
+  display: inline-block;
+}
+.vote_link {
+  padding-right: 10px;
+}
+
+span.topic_media {
+  display: inline-block;
+}

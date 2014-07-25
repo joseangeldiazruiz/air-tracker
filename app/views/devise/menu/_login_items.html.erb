@@ -15,10 +15,11 @@
     <button type="button" id="loginDropdown" class="btn btn-default navbar-btn dropdown-toggle">
       Sign in <span class="caret"></span>
     </button>          
-    <ul class="dropdown-menu signin-menu" role="menu">
-    <h3>Login</h3>            
+    <ul class="dropdown-menu signin-menu" role="menu">              
       <li>
+
         <%= form_for(:user, url: session_path(:user)) do |f| %>
+        <h3>Log in</h3>
         <div class="form-group">
           <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
         </div>

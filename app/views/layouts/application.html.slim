@@ -18,14 +18,13 @@ body
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand
+
+        a[href="/" class="navbar-brand"]
           i.fa.fa-send-o.fa-lg
           |  AIRTracker
 
       .collapse.navbar-collapse#airtracker-menu      
         ul.nav.navbar-nav
-          li
-            = link_to "Topics", topics_path
           -if user_signed_in?
             li
               = link_to "<i class='fa fa-plus'></i> New Topic".html_safe, new_topic_path
